@@ -45,7 +45,7 @@ for t=30:30:length(ValoresLidos)
     %Tendencias
     ValoresLidos(j:t) = tempVals(ini:fim);
     ValuesDetrend(j:t) = detrend(tempVals, 'constant');
-    ValoresLidos_noTrend0(j:t) = ValoresLidos_noTrend(j:t) - ValuesTrend(j:t);
+    ValoresLidos_noTrend0(j:t) = ValoresLidos(j:t) - ValuesDetrend(j:t);
 
     polyfValues = polyfit(Tv, tempVals, 2);
     polyvValues = polyval(polyfValues, Tv);
