@@ -42,14 +42,14 @@ for t=30:30:length(ValoresLidos)
 
     Tv = transpose(Tv);
 
-    %Tendencia
+    %Tendencias
+    ValoresLidos(j:t) = tempVals(ini:fim);
+    ValuesDetrend(j:t) = detrend(tempVals, 'constant');
+    ValoresLidos_noTrend0(j:t) = ValoresLidos_noTrend(j:t) - ValuesTrend(j:t);
+
     polyfValues = polyfit(Tv, tempVals, 2);
     polyvValues = polyval(polyfValues, Tv);
-    trendValues(j:t) = polyvValues;
-
-    ValoresLidos(j:t) = tempVals(ini:fim);
-    ValuesDetrend = detrend(tempVals, 'constant');
-    ValoresLidos_noTrend(j:t) = ValoresLidos_noTrend(j:t) - ValuesDetrend;
+    ValoresLidos_noTrend2(j:t) = polyvValues;
 
     % disp(j)
     j = j +30;
@@ -58,10 +58,13 @@ end
 n = length(ValoresLidos);
 Tm = 0:n-1;
 
-%  plot(ValoresLidos, '-o');
-% %plot(Tm, ValoresLidos, '-+', Tm, ValoresLidos_noTrend, '-*')
-% hold on
-% plot(trendValues, '*')
-% plot(ValoresLidos_noTrend)
-% hold off
-% %hold off
+figure(1)
+subplot(3,1,1);
+plot(ValoresLidos);
+title('Valores lidos');
+subplot(3,1,2);
+plot(ValuesTrend);
+title('Tendencia');
+subplot(3,1,3);
+plot(ValoresLidos_noTrend);
+title('Valores lidos sem tendencia')
