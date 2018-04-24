@@ -1,4 +1,4 @@
-[Datas ValoresLidos] = importfile('dataset_ATD_PL2.csv');
+[Datas, ValoresLidos] = importfile('dataset_ATD_PL2.csv');
 
 indNan = find(isnan(ValoresLidos));
 
@@ -8,8 +8,7 @@ for k=1:length(indNan)
     ValoresLidos(indNan(k)) = interp1(indAntesNan, valAntesNan, indNan(k), 'pchip', 'extrap');
 end
 
-
-trendValues = [];
+ValuesDetrend = zeros(length(ValoresLidos), 1);
 
 %plot(ValoresLidos,'-o')
 j=1;
@@ -45,7 +44,7 @@ for t=30:30:length(ValoresLidos)
     %Tendencias
     ValoresLidos(j:t) = tempVals(ini:fim);
     ValuesDetrend(j:t) = detrend(tempVals, 'constant');
-    ValoresLidos_noTrend0(j:t) = ValoresLidos_noTrend(j:t) - ValuesTrend(j:t);
+    ValoresLidos_noTrend0(j:t) = ValoresLidos(j:t) - ValuesDetrend(j:t);
 
     polyfValues = polyfit(Tv, tempVals, 2);
     polyvValues = polyval(polyfValues, Tv);
@@ -63,8 +62,8 @@ subplot(3,1,1);
 plot(ValoresLidos);
 title('Valores lidos');
 subplot(3,1,2);
-plot(ValuesTrend);
+plot(ValuesDetrend);
 title('Tendencia');
 subplot(3,1,3);
-plot(ValoresLidos_noTrend);
+plot(ValoresLidos_noTrend0);
 title('Valores lidos sem tendencia')
