@@ -8,8 +8,8 @@ for k=1:length(indNan)
     ValoresLidos(indNan(k)) = interp1(indAntesNan, valAntesNan, indNan(k), 'pchip', 'extrap');
 end
 
-ValuesDetrend = zeros(length(ValoresLidos), 1);
-polyvValues = zeros(length(ValoresLidos), 1);
+Trend = zeros(length(ValoresLidos), 1);
+polyvValues = zeros(length(ValoresLidos), 1)
 
 %plot(ValoresLidos,'-o')
 j=1;
@@ -44,8 +44,9 @@ for t=30:30:length(ValoresLidos)
 
     %Tendencias
     ValoresLidos(j:t) = tempVals(ini:fim);
-    ValuesDetrend(j:t) = detrend(tempVals, 'constant');
-    ValoresLidos_noTrend0(j:t) = ValoresLidos(j:t) - ValuesDetrend(j:t);
+    ValuesDetrend = detrend(tempVals, 'constant');
+    Trend(j:t) = ValoresLidos(j:t) - ValuesDetrend;
+    ValoresLidos_noTrend0(j:t) = ValoresLidos(j:t) - Trend(j:t);
 
     polyfValues = polyfit(Tv, tempVals, 2);
     polyvValues(j:t) = polyval(polyfValues, Tv);
@@ -58,24 +59,24 @@ end
 n = length(ValoresLidos);
 Tm = 0:n-1;
 
-figure(1)
-subplot(3,1,1);
-plot(ValoresLidos);
-title('Valores lidos');
-subplot(3,1,2);
-plot(ValuesDetrend);
-title('Tendencia');
-subplot(3,1,3);
-plot(ValoresLidos_noTrend0);
-title('Valores lidos sem tendencia grau 0')
+%figure(1)
+%subplot(3,1,1);
+%plot(ValoresLidos);
+%title('Valores lidos');
+%subplot(3,1,2);
+%plot(Trend);
+%title('Tendencia');
+%subplot(3,1,3);
+%plot(ValoresLidos_noTrend0);
+%title('Valores lidos sem tendencia grau 0')
 
-% figure(1)
-% subplot(3,1,1);
-% plot(ValoresLidos);
-% title('Valores lidos');
-% subplot(3,1,2);
-% plot(ValuesDetrend);
-% title('Tendencia');
-% subplot(3,1,3);
-% plot(ValoresLidos_noTrend2);
-% title('Valores lidos sem tendencia grau 2')
+%figure(1)
+%subplot(3,1,1);
+%plot(ValoresLidos);
+%title('Valores lidos');
+%subplot(3,1,2);
+%plot(ValuesDetrend);
+%title('Tendencia');
+%subplot(3,1,3);
+%plot(ValoresLidos_noTrend2);
+%title('Valores lidos sem tendencia grau 2')
