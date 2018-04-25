@@ -9,7 +9,7 @@ for k=1:length(indNan)
 end
 
 ValuesDetrend = zeros(length(ValoresLidos), 1);
-polyvValues = zeros(length(ValoresLidos), 1)
+polyvValues = zeros(length(ValoresLidos), 1);
 
 %plot(ValoresLidos,'-o')
 j=1;
@@ -58,24 +58,24 @@ end
 n = length(ValoresLidos);
 Tm = 0:n-1;
 
-%figure(1)
-%subplot(3,1,1);
-%plot(ValoresLidos);
-%title('Valores lidos');
-%subplot(3,1,2);
-%plot(ValuesDetrend);
-%title('Tendencia');
-%subplot(3,1,3);
-%plot(ValoresLidos_noTrend0);
-%title('Valores lidos sem tendencia grau 0')
+figure(1)
+subplot(3,1,1);
+plot(ValoresLidos);
+title('Valores lidos');
+subplot(3,1,2);
+plot(ValuesDetrend);
+title('Tendencia');
+subplot(3,1,3);
+plot(ValoresLidos_noTrend0);
+title('Valores lidos sem tendencia grau 0')
 
-%figure(1)
-%subplot(3,1,1);
-%plot(ValoresLidos);
-%title('Valores lidos');
-%subplot(3,1,2);
-%plot(ValuesDetrend);
-%title('Tendencia');
-%subplot(3,1,3);
-%plot(ValoresLidos_noTrend2);
-%title('Valores lidos sem tendencia grau 2')
+% figure(1)
+% subplot(3,1,1);
+% plot(ValoresLidos);
+% title('Valores lidos');
+% subplot(3,1,2);
+% plot(ValuesDetrend);
+% title('Tendencia');
+% subplot(3,1,3);
+% plot(ValoresLidos_noTrend2);
+% title('Valores lidos sem tendencia grau 2')
