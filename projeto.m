@@ -68,35 +68,35 @@ Tm = 0:n-1;
 
 %Apresenta graficos das tendencias
 
-% figure(1)
-% subplot(3,1,1);
-% plot(ValoresLidos);
-% title('Valores lidos');
-% subplot(3,1,2);
-% plot(Trend0);
-% title('Tendencia');
-% subplot(3,1,3);
-% plot(ValoresLidos_noTrend0);
-% title('Valores lidos sem tendencia grau 0')
+figure(1)
+subplot(3,1,1);
+plot(ValoresLidos);
+title('Valores lidos');
+subplot(3,1,2);
+plot(Trend0);
+title('Tendencia de grau 0');
+subplot(3,1,3);
+plot(ValoresLidos_noTrend0);
+title('Valores lidos sem tendencia grau 0')
 
-% figure(2)
-% subplot(3,1,1);
-% plot(ValoresLidos);
-% title('Valores lidos');
-% subplot(3,1,2);
-% plot(Trend1);
-% title('Tendencia grau 1');
-% subplot(3,1,3);
-% plot(ValoresLidos_noTrend1);
-% title('Valores lidos sem tendencia grau 1')
+figure(2)
+subplot(3,1,1);
+plot(ValoresLidos);
+title('Valores lidos');
+subplot(3,1,2);
+plot(Trend1);
+title('Tendencia de grau 1');
+subplot(3,1,3);
+plot(ValoresLidos_noTrend1);
+title('Valores lidos sem tendencia grau 1')
 
-% figure(3)
-% subplot(3,1,1);
-% plot(ValoresLidos);
-% title('Valores lidos');
-% subplot(3,1,2);
-% plot(polyvValues);
-% title('Tendencia grau 2');
-% subplot(3,1,3);
-% plot(ValoresLidos_noTrend2);
-% title('Valores lidos sem tendencia grau 2')
+figure(3)
+subplot(3,1,1);
+plot(ValoresLidos);
+title('Valores lidos');
+subplot(3,1,2);
+plot(polyvValues);
+title('Tendencia de grau 2');
+subplot(3,1,3);
+plot(ValoresLidos_noTrend2);
+title('Valores lidos sem tendencia grau 2')
