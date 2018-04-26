@@ -19,7 +19,7 @@ ini=1;
 for t=30:30:length(ValoresLidos)
     fim = t-j + 1;
     tempVals = ValoresLidos(j:t);
-    
+
     %Calcular medias e desvios padrao
     mediaTemp = mean(tempVals);
     stdTemp = std(tempVals);
@@ -27,7 +27,7 @@ for t=30:30:length(ValoresLidos)
     sigmaTemp = repmat(stdTemp, length(tempVals), 1);
 
     indOutliers = find(abs(tempVals - meanTemp)>3*sigmaTemp);
-    
+
     %Remover outliers
     for k=1:1:length(indOutliers)
         if(tempVals(indOutliers(k)) > mediaTemp + 3*stdTemp)
@@ -48,12 +48,12 @@ for t=30:30:length(ValoresLidos)
     ValuesDetrend = detrend(tempVals, 'constant');
     Trend0(j:t) = ValoresLidos(j:t) - ValuesDetrend;
     ValoresLidos_noTrend0(j:t) = ValoresLidos(j:t) - Trend0(j:t);
-    
+
     %Tendencia grau 1
     ValuesDetrend = detrend(tempVals);
     Trend1(j:t) = ValoresLidos(j:t) - ValuesDetrend;
     ValoresLidos_noTrend1(j:t) = ValoresLidos(j:t) - Trend1(j:t);
-    
+
     %Tendencia grau 2
     polyfValues = polyfit(Tv, tempVals, 2);
     polyvValues(j:t) = polyval(polyfValues, Tv);
@@ -68,35 +68,37 @@ Tm = 0:n-1;
 
 %Apresenta graficos das tendencias
 
-figure(1)
-subplot(3,1,1);
-plot(ValoresLidos);
-title('Valores lidos');
-subplot(3,1,2);
-plot(Trend0);
-title('Tendencia de grau 0');
-subplot(3,1,3);
-plot(ValoresLidos_noTrend0);
-title('Valores lidos sem tendencia grau 0')
+% figure(1)
+% subplot(3,1,1);
+% plot(ValoresLidos);
+% title('Valores lidos');
+% subplot(3,1,2);
+% plot(Trend0);
+% title('Tendencia');
+% subplot(3,1,3);
+% plot(ValoresLidos_noTrend0);
+% title('Valores lidos sem tendencia grau 0')
 
-figure(2)
-subplot(3,1,1);
-plot(ValoresLidos);
-title('Valores lidos');
-subplot(3,1,2);
-plot(Trend1);
-title('Tendencia de grau 1');
-subplot(3,1,3);
-plot(ValoresLidos_noTrend1);
-title('Valores lidos sem tendencia grau 1')
+% figure(2)
+% subplot(3,1,1);
+% plot(ValoresLidos);
+% title('Valores lidos');
+% subplot(3,1,2);
+% plot(Trend1);
+% title('Tendencia grau 1');
+% subplot(3,1,3);
+% plot(ValoresLidos_noTrend1);
+% title('Valores lidos sem tendencia grau 1')
 
-figure(3)
-subplot(3,1,1);
-plot(ValoresLidos);
-title('Valores lidos');
-subplot(3,1,2);
-plot(polyvValues);
-title('Tendencia de grau 2');
-subplot(3,1,3);
-plot(ValoresLidos_noTrend2);
-title('Valores lidos sem tendencia grau 2')
+% figure(3)
+% subplot(3,1,1);
+% plot(ValoresLidos);
+% title('Valores lidos');
+% subplot(3,1,2);
+% plot(polyvValues);
+% title('Tendencia grau 2');
+% subplot(3,1,3);
+% plot(ValoresLidos_noTrend2);
+% title('Valores lidos sem tendencia grau 2')
+
+%Sazonalidade
