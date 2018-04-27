@@ -105,14 +105,17 @@ Tm = 0:n-1;
 ValoresLidos_semSazo = [];
 ValoresSazonalidade = [];
 
+disp('Length valores')
+disp(length(ValoresLidos_noTrend2))
+
 j=1;
-for t=30:30:length(ValoresLidos_noTrend2)
+for t=30:30:length(ValoresLidos_noTrend2)-30
     h0 = repmat((1:30).',1,1); %sazonalidade 30 dias
     sX = dummyvar(h0);
-    BS = sX(1:30)\ValoresLidos_noTrend2(t:j);
+    BS = sX(1:30)\ValoresLidos_noTrend2(j:j+30);
     ST = sX(1:30)*BS;
-    ValoresSazonalidade(t:j) = ST.';
-    ValoresLidos_semSazo(t:j) = ValoresLidos_noTrend2(t:j) - ST.';
+    ValoresSazonalidade(j:j+30) = ST.';
+    ValoresLidos_semSazo(j:j+30) = ValoresLidos(j:j+30)- ST.';
     j = j+30;
 end
 
