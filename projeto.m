@@ -112,7 +112,7 @@ for t=30:30:length(ValoresLidos_noTrend2)
     BS = sX(1:30)\ValoresLidos_noTrend2(t:j);
     ST = sX(1:30)*BS;
     ValoresSazonalidade(t:j) = ST.';
-    ValoresLidos_semSazo(t:j) = ValoresLidos_noTrend2(t:j) - ST.';
+    ValoresLidos_semSazo(t:j) = ValoresLidos(t:j) - ST.';
     j = j+30;
 end
 
