@@ -102,22 +102,22 @@ Tm = 0:n-1;
 % title('Valores lidos sem tendencia grau 2')
 
 %Sazonalidade
-TotalFinal = [];
-STFinal = [];
+ValoresLidos_semSazo = [];
+ValoresSazonalidade = [];
 
 j=1;
 for t=1:30:length(polyvValues)
     fim = t-j + 1;
-    h0 = repmat((1:31).',1,1); %sazonalidade 31 dias
+    h0 = transpose(repmat((1:31),1,1)); %sazonalidade 31 dias
     sX = dummyvar(h0);
     BS = sX(1:31)\polyvValues(t:j);
     ST = sX(1:31)*BS;
-    STFinal(t:j) = ST.';
-    if(length(STFinal) <= 10)
+    ValoresSazonalidade(t:j) = transpose(ST);
+    if(length(ValoresSazonalidade) <= 10)
         break
     end
     adftest(STFinal(t:j));
-    TotalFinal(t:j) = TotalReadingsB(t:j) - ST.';
+    ValoresLidos_semSazo(t:j) = ValoresLidos(t:j) - transpose(ST);
     j = j+30;
 end
 
