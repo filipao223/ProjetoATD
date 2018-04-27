@@ -127,7 +127,7 @@ subplot(2,1,2);
 plot(ValoresSazonalidade);
 title('Sazonalidade');
 
-%Grafico Erratico
+%Grafico irregularidade
 %figure(5)
 %subplot(2,1,1);
 %plot(ValoresLidos - ValoresSazonalidade - polyvValues)
