@@ -234,12 +234,12 @@ iddata_var = iddata(ValoresSazonalidade.', [], 1, 'TimeUnit', 'days');
 
 %Modelo ARIMA
 
-p1= 10;
-D1= 1;
-q1= 1;
+p= 5;
+D= 1;
+q= 1;
 
 modeloARIMA = arima(p1, D1, q1);
-estARIMA = estimate(modeloARIMA,ValoresLidos(1:365), 'Y0', ValoresLidos(1:p1+1));
+estARIMA = estimate(modeloARIMA,ValoresLidos(1:365), 'Y0', ValoresLidos(1:p+1));
 
 simARIMA = simulate(estARIMA,365*2);
 
