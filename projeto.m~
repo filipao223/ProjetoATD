@@ -180,13 +180,7 @@ FACP = parcorr(ValoresSazonalidade);
 % plot(FACP);
 % title('FACP');
 
-iddata_var = iddata(ValoresSazonalidade.', [], 1);
+iddata_var = iddata(ValoresSazonalidade, [], 1);
 
 opt = arOptions('Approach', 'ls');
-modelo = ar(iddata_var, 31, opt);
-
-polyCoef = polydata(modelo);
-
-arValues = ones(length(ValoresLidos));
-
-for t = 1:
+m = ar(iddata_var,
