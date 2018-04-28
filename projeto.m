@@ -139,10 +139,8 @@ title('Original sem irreguralidade');
 
 %Verifica estacionaridade das series
 
-j=1;
-for t=1:30:length(ValoresSazonalidade)
-    fim = t-j+1
-    h = adftest(ValoresSazonalidade(t:fim));
+for t=1:30:length(ValoresSazonalidade)-30
+    h = adftest(ValoresSazonalidade(t:t+30));
     if(h ~= 1)
         disp('Não é')
     end
