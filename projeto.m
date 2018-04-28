@@ -105,25 +105,46 @@ Tm = 0:n-1;
 ValoresLidos_semSazo = [];
 ValoresSazonalidade = [];
 
-disp('Length valores')
-disp(length(ValoresLidos_noTrend2))
-
 j=1;
-for t=30:30:length(ValoresLidos_noTrend2)-30
-    h0 = repmat((1:30).',1,1); %sazonalidade 30 dias
+for t=30:30:length(ValoresLidos_noTrend2)
+    if(length(ValoresLidos_noTrend2) - t <30)
+        break
+    end
+    h0 = repmat((1:30).',1,1);
     sX = dummyvar(h0);
     BS = sX(1:30)\ValoresLidos_noTrend2(j:j+30);
     ST = sX(1:30)*BS;
     ValoresSazonalidade(j:j+30) = ST.';
-    ValoresLidos_semSazo(j:j+30) = ValoresLidos(j:j+30)- ST.';
+    ValoresLidos_semSazo(j:j+30) = ValoresLidos(j:j+30) - (ST.');
     j = j+30;
 end
 
 %Grafico Sazonal
 figure(4)
 subplot(2,1,1);
-plot(ValoresLidos_semSazo);
+plot(ValoresSazonalidade);
 title('Original sem Sazonalidade');
 subplot(2,1,2);
-plot(ValoresSazonalidade);
+plot(ValoresLidos_semSazo);
 title('Sazonalidade');
+
+%Grafico irreguralidade
+figure(5)
+subplot(2,1,1);
+plot(ValoresLidos(1:331).' - ValoresSazonalidade - ValoresLidos_noTrend2(1:331))
+title('Componente irregular')
+subplot(2,1,2);
+plot(ValoresSazonalidade + polyvValues(1:331).');
+title('Original sem irreguralidade');
+
+%Verifica estacionaridade das series
+
+j=1;
+for t=1:30:length(ValoresSazonalidade)
+    fim = t-j+1
+    h = adftest(ValoresSazonalidade(t:fim));
+    if(h ~= 1)
+        disp('Não é')
+    end
+    j=j+30;
+end
