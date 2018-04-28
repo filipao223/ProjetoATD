@@ -120,29 +120,56 @@ for t=30:30:length(ValoresLidos_noTrend2)
 end
 
 %Grafico Sazonal
-figure(4)
-subplot(2,1,1);
-plot(ValoresSazonalidade);
-title('Original sem Sazonalidade');
-subplot(2,1,2);
-plot(ValoresLidos_semSazo);
-title('Sazonalidade');
+% figure(4)
+% subplot(2,1,1);
+% plot(ValoresSazonalidade);
+% title('Original sem Sazonalidade');
+% subplot(2,1,2);
+% plot(ValoresLidos_semSazo);
+% title('Sazonalidade');
 
 %Grafico irreguralidade
-figure(5)
-subplot(2,1,1);
-plot(ValoresLidos(1:331).' - ValoresSazonalidade - ValoresLidos_noTrend2(1:331))
-title('Componente irregular')
-subplot(2,1,2);
-plot(ValoresSazonalidade + polyvValues(1:331).');
-title('Original sem irreguralidade');
+% figure(5)
+% subplot(2,1,1);
+% plot(ValoresLidos(1:331).' - ValoresSazonalidade - ValoresLidos_noTrend2(1:331))
+% title('Componente irregular')
+% subplot(2,1,2);
+% plot(ValoresSazonalidade + polyvValues(1:331).');
+% title('Original sem irreguralidade');
 
 %Verifica estacionaridade das series
 
+check = 0;
 for t=1:30:length(ValoresSazonalidade)-30
     h = adftest(ValoresSazonalidade(t:t+30));
     if(h ~= 1)
-        disp('Não é')
+        disp('Componente sazonal Não Estacionária')
+        check = 1;
+        break
     end
     j=j+30;
 end
+
+if(check==0)
+    disp('Componente sazonal Estacionária')
+end
+
+check = 0;
+for t=1:30:length(ValoresLidos_semSazo)-30
+    h = adftest(ValoresLidos_semSazo(t:t+30));
+    if(h ~= 1)
+        disp('Componente regularizada Não Estacionária')
+        check = 1;
+        break
+    end
+    j=j+30;
+end
+
+if(check==0)
+    disp('Componente regularizada Estacionária')
+end
+
+FAC = autocorr(ValoresSazonalidade);
+FACP = parcorr(ValoresSazonalidade);
+
+iddata_var = iddata(ValoresSazonalidade, [], 1)
