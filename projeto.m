@@ -105,9 +105,6 @@ Tm = 0:n-1;
 ValoresLidos_semSazo = [];
 ValoresSazonalidade = [];
 
-disp('Length valores')
-disp(length(ValoresLidos_noTrend2))
-
 j=1;
 for t=30:30:length(ValoresLidos_noTrend2)
     if(length(ValoresLidos_noTrend2) - t <30)
